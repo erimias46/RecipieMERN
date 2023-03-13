@@ -11,8 +11,7 @@ const [recipes, setRecipes] = useState([]);
     const fetch = async () => {
       try {
        const response= await axios.get("http://localhost:3001/recipes");
-        
-        
+         
        setRecipes(response.data)
         
       }
@@ -27,9 +26,8 @@ const [recipes, setRecipes] = useState([]);
   return (
     <div>
       <h1>Recipies</h1>
-
       <ul>
-        {console.log(recipes)}
+      
         {recipes.map((recipe) => {
           return (
             <li key={recipe._id}>
