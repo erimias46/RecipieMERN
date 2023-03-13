@@ -44,20 +44,7 @@ const [recipes, setRecipes] = useState([]);
             </li>
           );
         })}
-        {/* {recipes.map((recipie) => {
-          return (
-            <li key={recipie._id}>
-              <div>
-                <h2>{recipie.name}</h2>
-              </div>
-              <div className="instruction">
-                <p>{recipie.instructions}</p>
-              </div>
-              <img src={recipie.imageUrl} alt={recipie.name} />
-              <p>Cooking Time : {recipie.cookingTime} (minutes)</p>
-            </li>
-          );
-        })} */}
+        
       </ul>
     </div>
   )
