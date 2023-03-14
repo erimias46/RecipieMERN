@@ -42,7 +42,7 @@ const Home = () => {
   const saveRecipie = async (recipeID) => {
     try {
       const response = await axios.put("http://localhost:3001/recipes",{recipeID,userID});
-      console.log(response)
+      setsavedRec(response.data.savedRecipie);
       
     }
     catch (err) {
