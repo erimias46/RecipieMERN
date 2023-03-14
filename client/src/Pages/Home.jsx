@@ -7,6 +7,7 @@ const Home = () => {
   
   const [recipes, setRecipes] = useState([]);
   const userID = useGetUserID();
+  const[savedrec,setsavedRec]=useState([])
   useEffect(() => {
     
 
@@ -21,7 +22,21 @@ const Home = () => {
         console.log(err)
       }
     }
+    
+    const savedfecth = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/recipes/saved/ids/${userID} `
+        );
+
+        setsavedRec(response.data.savedRecipie);
+      } catch (err) {
+        console.log(err);
+      }
+      
+    }
     fetch()
+    savedfecth()
     
   },[])
   const saveRecipie = async (recipeID) => {
@@ -35,6 +50,13 @@ const Home = () => {
     }
     
   }
+  const isrecipiesaved = (id) => {
+    if (savedrec.includes(id)) {
+       return true; 
+    }
+    
+    
+  }
   return (
     <div>
       <h1>Recipies</h1>
@@ -45,7 +67,12 @@ const Home = () => {
             <li key={recipe._id}>
               <div>
                 <h2>{recipe.name}</h2>
-                <button onClick={() =>  saveRecipie(recipe._id) }>Save </button>
+                <button
+                  onClick={() => saveRecipie(recipe._id)}
+                  disabled={isrecipiesaved(recipe._id)}
+                >
+                  {isrecipiesaved(recipe._id)? "Saved":"Save"}
+                </button>
               </div>
               <div className="instruction">
                 <p>{recipe.instruction}</p>

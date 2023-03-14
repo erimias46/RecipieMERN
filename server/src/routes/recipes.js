@@ -49,10 +49,10 @@ router.put('/', async (req, res) => {
     
     
 })
-router.get('/saved/ids', async (req, res) => {
+router.get('/saved/ids/:userID', async (req, res) => {
     
     try {
-        const user = await UserModel.findById(req.body.userID)
+        const user = await UserModel.findById(req.params.userID)
         res.json({savedRecipie:user?.savedRecipie})
         
     }
