@@ -62,13 +62,12 @@ router.get('/saved/ids/:userID', async (req, res) => {
     
 })
 
-router.get("/saved/", async (req, res) => {
-    const user = await UserModel.findById(req.body.userID);
-    const savedRecipie = await RecipieModel.find({
-        _id:{$in:user.savedRecipie}
-    })
-    res.json({savedRecipie});
-    
+router.get("/saved/:userID", async (req, res) => {
+  const user = await UserModel.findById(req.params.userID);
+  const savedRecipie = await RecipieModel.find({
+    _id: { $in: user.savedRecipie },
+  });
+  res.json({ savedRecipie });
 });
 
 export { router as recipieRouter };
