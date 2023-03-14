@@ -36,7 +36,8 @@ router.put('/', async (req, res) => {
     try {
     const recipe = await RecipieModel.findById(req.body.recipeID)
     const user = await UserModel.findById(req.body.userID)
-    user.savedRecipie = push(recipe);
+        
+        user.savedRecipie.push(recipe);
         await user.save()
         res.json({savedRecipie:user.savedRecipie});
         

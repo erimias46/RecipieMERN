@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import { useGetUserID } from "../hooks/useGetUserID.js";
 
 const Home = () => {
   
-const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const userID = useGetUserID();
   useEffect(() => {
     
 
@@ -22,7 +24,17 @@ const [recipes, setRecipes] = useState([]);
     fetch()
     
   },[])
-  
+  const saveRecipie = async (recipeID) => {
+    try {
+      const response = await axios.put("http://localhost:3001/recipes",{recipeID,userID});
+      console.log(response)
+      
+    }
+    catch (err) {
+      console.log(err)
+    }
+    
+  }
   return (
     <div>
       <h1>Recipies</h1>
@@ -33,6 +45,7 @@ const [recipes, setRecipes] = useState([]);
             <li key={recipe._id}>
               <div>
                 <h2>{recipe.name}</h2>
+                <button onClick={() =>  saveRecipie(recipe._id) }>Save </button>
               </div>
               <div className="instruction">
                 <p>{recipe.instruction}</p>

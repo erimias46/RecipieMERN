@@ -9,7 +9,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  savedRecipie: [{ type: mongoose.Schema.Types.ObjectId, ref: "recipes" }],
+  savedRecipie: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "recipes",
+    },
+  ],
 });
 
 export const  UserModel = mongoose.model('users', UserSchema)
