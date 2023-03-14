@@ -17,9 +17,17 @@ const Navbar = () => {
     <div className="navbar">
       <Link to="/">Home</Link>
       <Link to="/create">Create Recipies</Link>
-      <Link to="/save">Saved Recipies</Link>
-      {!cookie.access_token?(<Link to="/auth">Login/Register</Link>):(<button onClick={handleLogout}>Logout</button>)}
-      
+
+      {!cookie.access_token ? (
+        <>
+          
+          <Link to="/auth">Login/Register</Link>
+        </>
+      ) : (
+          <><Link to="/save">Saved Recipies</Link>
+        <button onClick={handleLogout}>Logout</button></>
+          
+      )}
     </div>
   );
 }
